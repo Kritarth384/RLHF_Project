@@ -1,0 +1,20 @@
+# sft.py
+
+CUDA_DEVICE_ORDER="PCI_BUS_ID" CUDA_VISIBLE_DEVICES="1,2,3" python /raid/home/rajivratn/kritarth/RLHF_Project/script/sft.py --model "NousResearch/Llama-2-7b-hf" --train "/raid/home/rajivratn/kritarth/RLHF_Project/Dataset/Conversation/SFT/train.json" --val "/raid/home/rajivratn/kritarth/RLHF_Project/Dataset/Conversation/SFT/val.json" --output "/raid/home/rajivratn/kritarth/RLHF_Project/TRAIN/SFT/LLAMA-2-7B_SFT_CONVERSATION"
+
+
+## ppo.py
+
+CUDA_DEVICE_ORDER="PCI_BUS_ID" CUDA_VISIBLE_DEVICES="1,2,3" python /raid/home/rajivratn/kritarth/RLHF_Project/script/ppo.py --sft_model "/raid/home/rajivratn/kritarth/RLHF_Project/TRAIN/SFT/MERGED/LLAMA-2-7B_SFT_CONVERSATION" --rm_model "/raid/home/rajivratn/kritarth/RLHF_Project/TRAIN/RM/CONVERSATION/LLAMA-2-7B_RLAIF_CONVERSATION/checkpoint-18" --train "/raid/home/rajivratn/kritarth/RLHF_Project/Dataset/Conversation/SFT/train.json" --val "/raid/home/rajivratn/kritarth/RLHF_Project/Dataset/Conversation/SFT/val.json" --output "/raid/home/rajivratn/kritarth/RLHF_Project/TRAIN/PPO/LLAMA_2_PPO_CONVERSATION_RLAIF"
+
+
+## dpo.py
+
+CUDA_DEVICE_ORDER="PCI_BUS_ID" CUDA_VISIBLE_DEVICES="1,2,3" python /raid/home/rajivratn/kritarth/RLHF_Project/script/dpo.py --model "/raid/home/rajivratn/kritarth/RLHF_Project/TRAIN/SFT/MERGED/LLAMA-2-7B_SFT_CONVERSATION" --train "/raid/home/rajivratn/kritarth/RLHF_Project/Dataset/Conversation/RM/train.json" --val "/raid/home/rajivratn/kritarth/RLHF_Project/Dataset/Conversation/RM/val.json" --output "/raid/home/rajivratn/kritarth/RLHF_Project/TRAIN/DPO/LLAMA_2_DPO_CONVERSATION"
+
+
+# rm.py
+CUDA_DEVICE_ORDER="PCI_BUS_ID" CUDA_VISIBLE_DEVICES="1,2,3" python /raid/home/rajivratn/kritarth/RLHF_Project/script/rm.py --model "NousResearch/Llama-2-7b-hf" --train "/raid/home/rajivratn/kritarth/RLHF_Project/Dataset/Conversation/RM/Conversation_AI_labelling.json" --val "/raid/home/rajivratn/kritarth/RLHF_Project/Dataset/Conversation/RM/val.json" --output "/raid/home/rajivratn/kritarth/RLHF_Project/TRAIN/RM/CONVERSATION/LLAMA-2-7B_RLAIF_CONVERSATION"
+
+## inference.py
+CUDA_DEVICE_ORDER="PCI_BUS_ID" CUDA_VISIBLE_DEVICES="1,2,3" python /raid/home/rajivratn/kritarth/RLHF_Project/script/inference.py --model "/raid/home/rajivratn/kritarth/RLHF_Project/TRAIN/PPO/MERGED/LLAMA-2-7B_PPO_RLAIF_CONVERSATION" --test "/raid/home/rajivratn/kritarth/RLHF_Project/Dataset/Conversation/SFT/test.json" --output "/raid/home/rajivratn/kritarth/RLHF_Project/INFER/LLAMA_2_PPO_RLAIF_CONVERSATION.json"
